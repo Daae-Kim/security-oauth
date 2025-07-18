@@ -13,6 +13,7 @@ import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.stereotype.Service;
 
 //리소스 서버로 부터 받은 토큰 처리
+//Oauth2 제공자로부터 사용자 정보 가져옴. 정보 저장 및 업데이트
 @Service
 public class CustomOAuth2UserService extends DefaultOAuth2UserService {
 
@@ -32,7 +33,7 @@ public class CustomOAuth2UserService extends DefaultOAuth2UserService {
         String registrationId = userRequest.getClientRegistration().getRegistrationId(); //registrationId : naver, kakao등
         OAuth2Response oAuth2Response = null;
         if(registrationId.equals("naver")){
-            //naver 이면 naver dto 처리
+            //naver 이면 naver dto 처리, 파싱하기..!!
 
             oAuth2Response = new NaverResponse(oAuth2User.getAttributes());
         }else {

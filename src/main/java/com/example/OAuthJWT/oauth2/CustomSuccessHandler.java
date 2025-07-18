@@ -16,6 +16,7 @@ import java.util.Collection;
 import java.util.Iterator;
 
 //oauth2 로그인 성공시 실행될 성공 핸들러 커스텀-> 내부에 Jwt 발급 진행
+//토큰 생성 및 응답에 포함
 @Component
 public class CustomSuccessHandler extends SimpleUrlAuthenticationSuccessHandler {
 
