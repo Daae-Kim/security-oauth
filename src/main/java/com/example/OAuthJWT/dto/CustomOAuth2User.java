@@ -8,6 +8,7 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 
+//provider 로 부터 받은 정보 표준화
 public class CustomOAuth2User implements OAuth2User {
 
 
@@ -22,6 +23,8 @@ public class CustomOAuth2User implements OAuth2User {
     public Map<String, Object> getAttributes() {
         return null;
     }
+
+
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
