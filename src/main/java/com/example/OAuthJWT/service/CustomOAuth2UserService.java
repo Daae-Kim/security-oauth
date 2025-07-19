@@ -32,6 +32,7 @@ public class CustomOAuth2UserService extends DefaultOAuth2UserService {
 
         String registrationId = userRequest.getClientRegistration().getRegistrationId(); //registrationId : naver, kakao등
         OAuth2Response oAuth2Response = null;
+
         if(registrationId.equals("naver")){
             //naver 이면 naver dto 처리, 파싱하기..!!
 
@@ -44,11 +45,13 @@ public class CustomOAuth2UserService extends DefaultOAuth2UserService {
         String username = oAuth2Response.getProvider()+" "+oAuth2Response.getProviderId();
         UserEntity existData = userRepository.findByUsername(username);
 
+
         if(existData == null){
             UserEntity userEntity = new UserEntity();
             userEntity.setUsername(username);
             userEntity.setEmail(oAuth2Response.getEmail());
             userEntity.setName(oAuth2Response.getName());
+            userEntity.setBirthYear(oAuth2Response.getBirthYear());
             userEntity.setRole("ROLE_USER");
 
             userRepository.save(userEntity);
@@ -56,8 +59,7 @@ public class CustomOAuth2UserService extends DefaultOAuth2UserService {
             UserDTO userDTO = new UserDTO();
             userDTO.setUsername(username);
             userDTO.setName(oAuth2Response.getName());
-            userDTO.setRole("ROLE_user");
-
+            userDTO.setRole("ROLE_USER");
 
 
             return new CustomOAuth2User(userDTO);
@@ -66,6 +68,7 @@ public class CustomOAuth2UserService extends DefaultOAuth2UserService {
 
             existData.setEmail(oAuth2Response.getEmail());
             existData.setName(oAuth2Response.getName());
+            existData.setBirthYear(oAuth2Response.getBirthYear());
 
             userRepository.save(existData);
 
@@ -76,14 +79,7 @@ public class CustomOAuth2UserService extends DefaultOAuth2UserService {
 
             return new CustomOAuth2User(userDTO);
 
-
         }
-
-
-
-
-
-
 
     }
 
