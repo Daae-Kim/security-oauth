@@ -19,5 +19,6 @@ public class UserEntity {
     private String username;
     private String name;
     private String email;
+    private String birthYear;
     private String role;
 }
